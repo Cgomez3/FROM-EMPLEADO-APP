@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="card text-bg-warning mb-3" >
+        <div class="card-header">Lista de Empleados</div>
+        <div class="card-body">
+          <div class="my-2  text-left">
+            <button type="submit" class="btn btn-primary mb-3" [routerLink]="['/empleados/form']">Crear Empleados</button>
+          </div>
+          <div *ngIf="empleados.length == 0">
+            No hay registros para mostrar
+          </div>
+            <table class="table table-bordered table-striped" *ngIf="empleados.length > 0">
+                <thead>
+                  <tr>
+                    <th scope="col">Nro Documnto</th>
+                    <th scope="col">nombres</th>
+                    <th scope="col">apellidos</th>
+                    <th scope="col">edad</th>
+                    <th scope="col">fechaNacimiento</th>
+                    <th scope="col">Salario</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Elimnar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let empleado of empleados">
+                    <td>{{empleado.documentoId}}</td>
+                    <td>{{empleado.nombres}}</td>
+                    <td>{{empleado.apellidos | uppercase}}</td>
+                    <td>{{empleado.edad}}</td>
+                    <td>{{empleado.fechaNacimiento | date:"EEEE dd, MMMM yyyy"}}</td>
+                    <td>{{empleado.salario}}</td>
+                    
+                    <td>
+                      <button type="button" name="button" [routerLink]="['/empleados/form',empleado.documentoId]" class="btn btn-primary">Editar</button>
+                    </td>
+                    <td>
+                      <button type="button" name="button" (click)="delete(empleado)"  class="btn btn-danger">Elinar</button>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+        </div>
+      </div>
+    </div>

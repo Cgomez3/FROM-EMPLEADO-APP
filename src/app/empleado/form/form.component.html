@@ -1,0 +1,123 @@
+<div>
+    <ul class="alert alert-danger" *ngIf="errores.length > 0">
+        <li *ngFor="let err of errores">{{err}}</li>
+    </ul>
+</div>
+
+<div class="card" >
+  <div class="card-header">{{ titulo }}</div>
+  <div class="card-body">
+    <form  #empleadoForm="ngForm" >
+      <div class="mb-3 row">
+        
+        <div class="form-control">
+          <label for="documentoId" class="col-sm-2 col-form-label">Nro Documento</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="empleado.documentoId"
+            name="documentoId"
+            #documentoId="ngModel"
+            
+            
+            
+          /> <!-- required minlength="4"-->
+          <div class="alert alert-danger" *ngIf="documentoId.invalid && (documentoId.dirty || documentoId.touched)">
+            <div *ngIf="documentoId.hasError('required')">
+                Nro Documento es requerido
+            </div>
+            <div *ngIf="documentoId.hasError('minlength')">
+                El Documento debe tener almenos 8 caracteres
+            </div>
+          </div>
+        </div>
+
+        <div class="form-control">
+            <label for="nombres" class="col-sm-2 col-form-label">Nombre</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombres"
+              [(ngModel)]="empleado.nombres"
+              name="nombres"
+              #nombres="ngModel"
+            /> <!-- required -->
+            <div class="alert alert-danger" *ngIf="nombres.invalid && (nombres.dirty || nombres.touched)">
+                <div *ngIf="nombres.hasError('required')">
+                    Nombre es requerido
+                </div>
+            </div>
+          </div>
+        <div class="form-control">
+            <label for="apellidos" class="col-sm-2 col-form-label">Apellido</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellidos"
+              [(ngModel)]="empleado.apellidos"
+              name="apellidos"
+              #apellidos="ngModel"
+            /> <!-- required -->
+            <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                <div *ngIf="apellidos.hasError('required')">
+                    el apellido es requerido
+                </div>
+            </div>
+          </div>
+          <div class="form-control">
+            <label for="edad" class="col-sm-2 col-form-label">EDAD</label>
+            <input
+              type="edad"
+              class="form-control"
+              id="edad"
+              [(ngModel)]="empleado.edad"
+              name="edad"
+              #edad="ngModel"
+            /><!-- required email-->
+            <div class="alert alert-danger" *ngIf="edad.invalid && (edad.dirty || edad.touched)">
+                <div *ngIf="edad.hasError('required')">
+                    edad es requerido
+                </div>
+            </div>
+          </div>
+          <div class="form-control">
+            <label for="fechaNacimiento" class="col-sm-2 col-form-label">FECHA NAC.</label>
+            <input
+              type="fechaNacimiento"
+              class="form-control"
+              id="fechaNacimiento"
+              [(ngModel)]="empleado.fechaNacimiento"
+              name="fechaNacimiento"
+              #fechaNacimiento="ngModel"
+            /><!-- required email-->
+            <div class="alert alert-danger" *ngIf="fechaNacimiento.invalid && (fechaNacimiento.dirty || fechaNacimiento.touched)">
+                <div *ngIf="fechaNacimiento.hasError('required')">
+                    Fecha Nacimiento es requerido
+                </div>
+            </div>
+          </div>
+          <div class="form-control">
+            <label for="salario" class="col-sm-2 col-form-label">SALARIO.</label>
+            <input
+              type="salario"
+              class="form-control"
+              id="salario"
+              [(ngModel)]="empleado.salario"
+              name="salario"
+              #salario="ngModel"
+            /><!-- required email-->
+            <div class="alert alert-danger" *ngIf="salario.invalid && (salario.dirty || salario.touched)">
+                <div *ngIf="salario.hasError('required')">
+                    El salario es requerido
+                </div>
+            </div>
+          </div>
+          <div class="form-control">
+            <button  class="btn btn-primary" role="button" (click)="create()"  [disabled]="!empleadoForm.form.valid">CREAR</button>
+            
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
